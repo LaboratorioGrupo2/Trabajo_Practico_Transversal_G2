@@ -14,29 +14,25 @@ import java.sql.SQLException;
  * @author Grupo2
  */
 public class Conexion {
-    private String url="jdbc:mysql://localhost/pruebaalumno";
+    private String url="jdbc:mysql://localhost/universidadgrupo2";
     private String usuario="root";
     private String password="";
-
     private Connection con;
     
     public Conexion() throws ClassNotFoundException{
             Class.forName("org.mariadb.jdbc.Driver");
-        
     }
     
     public Conexion(String url, String usuario, String password) throws ClassNotFoundException {
         this.url = url;
         this.usuario = usuario;
         this.password = password;
-
         Class.forName("org.mariadb.jdbc.Driver");
-
     }
     
     public Connection getConexion() throws SQLException{
         if(con == null){
-           con = DriverManager.getConnection(url + "?useLegacyDatetimeCode=false&serverTimezone=UTC"+ "&user=" + usuario + "&password=" + password);
+           con = DriverManager.getConnection(url,usuario,password);
         }
         return con;
     }
