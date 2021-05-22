@@ -13,9 +13,8 @@ public class Materia {
 
 private int id_materia=-1;
 private String nombre_materia;
-private int año;
 private boolean estado;
-
+private int año;
     public Materia(String nombre_materia, int año, boolean estado) {
         this.nombre_materia = nombre_materia;
         this.año = año;
