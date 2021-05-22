@@ -6,7 +6,6 @@
 package Controlador;
 
 import Modelo.Alumno;
-import Modelo.Materia;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
