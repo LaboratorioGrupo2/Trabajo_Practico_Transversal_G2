@@ -170,10 +170,10 @@ public class CursadaData {
         }
     }
 
-    public void actualizarNotaCursada(int id_alumno, int id_materia, int nota) {
+    public void actualizarNotaCursada(int id_alumno, int id_materia, double nota) {
         try {
             PreparedStatement ps = connection.prepareStatement("UPDATE cursada SET nota = ? WHERE id_alumno = ? AND id_materia = ?", Statement.RETURN_GENERATED_KEYS);
-            ps.setInt(1, nota);
+            ps.setDouble(1, nota);
             ps.setInt(2, id_alumno);
             ps.setInt(3, id_materia);
             if (ps.executeUpdate() == 1) {
