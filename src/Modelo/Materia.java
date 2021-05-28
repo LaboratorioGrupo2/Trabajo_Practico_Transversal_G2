@@ -34,7 +34,7 @@ private boolean estado;
     
     @Override
     public String toString(){
-        return id_materia+" - "+nombre_materia;
+        return id_materia+" - "+nombre_materia+" - "+año;
     }
 
     public int getId_materia() {

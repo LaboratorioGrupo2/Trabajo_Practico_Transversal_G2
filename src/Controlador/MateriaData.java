@@ -26,7 +26,7 @@ public class MateriaData {
     public MateriaData(Conexion conexion) {
         try {
             connection = conexion.getConexion();
-            mensaje("Conectado a la base de datos");
+           
         } catch (SQLException ex) {
             mensaje("Error al obtener la conexion");
         }
@@ -63,6 +63,7 @@ public class MateriaData {
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 m = new Materia();
+                m.setId_Materia(rs.getInt("id_materia"));
                 m.setNombre_materia(rs.getString("nombre_materia"));
                 m.setAño(rs.getInt("año"));
                 m.setEstado(rs.getBoolean("estado"));
@@ -129,10 +130,11 @@ public class MateriaData {
 
     public void actualizarMateria(Materia materia) {
         try {
-            PreparedStatement ps = connection.prepareStatement("UPDATE materia SET nombre_materia = ?, año = ? WHERE id_materia = ?", Statement.RETURN_GENERATED_KEYS);
+            PreparedStatement ps = connection.prepareStatement("UPDATE materia SET nombre_materia = ?, año = ?, estado=? WHERE id_materia = ?", Statement.RETURN_GENERATED_KEYS);
             ps.setString(1, materia.getNombre_Materia());
             ps.setInt(2, materia.getAño());
-            ps.setInt(3, materia.getId_materia());
+            ps.setBoolean(3, materia.isEstado());
+            ps.setInt(4, materia.getId_materia());
             if(ps.executeUpdate()==1){
                 mensaje("Materia con id_materia: " + materia.getId_materia() + " actualizada correctamente.");
             } else {

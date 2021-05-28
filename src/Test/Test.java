@@ -82,13 +82,13 @@ public class Test {
             }
             System.out.println("------------------------------------------------");
             md.guardarMateria(portugues);
-            Cursada cursada1 = new Cursada(castor.getId_alumno(), portugues.getId_materia(), 5);
-            Cursada cursada2 = new Cursada(cristian.getId_alumno(), portugues.getId_materia(), 7);
-            Cursada cursada3 = new Cursada(federico.getId_alumno(), portugues.getId_materia(), 6);
-            Cursada cursada4 = new Cursada(castor.getId_alumno(), web1.getId_materia(), 6);
-            Cursada cursada5 = new Cursada(cristian.getId_alumno(), web1.getId_materia(), 6);
-            Cursada cursada6 = new Cursada(castor.getId_alumno(), eda.getId_materia(), 6);
-            Cursada cursada7 = new Cursada(federico.getId_alumno(), web1.getId_materia(), 6);
+            Cursada cursada1 = new Cursada(castor, portugues, 5); //se dofico
+            Cursada cursada2 = new Cursada(cristian, portugues, 7);
+            Cursada cursada3 = new Cursada(federico, portugues, 6);
+            Cursada cursada4 = new Cursada(castor, web1, 6);
+            Cursada cursada5 = new Cursada(cristian, web1, 6);
+            Cursada cursada6 = new Cursada(castor, eda, 6);
+            Cursada cursada7 = new Cursada(federico, web1, 6);
             cd.guardarCursada(cursada1);
             cd.guardarCursada(cursada2);
             cd.guardarCursada(cursada3);

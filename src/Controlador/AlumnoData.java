@@ -31,7 +31,7 @@ public class AlumnoData {
     public AlumnoData(Conexion conexion) {
         try {
             connection = conexion.getConexion();
-            mensaje("Conectado a la base de datos");
+         
 
         } catch (SQLException ex) {
             mensaje("Error al obtener la conexion en AlumnoData");
@@ -117,11 +117,13 @@ public class AlumnoData {
 
     public void actualizarAlumno(Alumno alumno) {
         try {
-            PreparedStatement ps = connection.prepareStatement("UPDATE alumno SET nombre = ?, apellido = ?, fecha_nac = ? WHERE id_alumno = ?", Statement.RETURN_GENERATED_KEYS);
+            PreparedStatement ps = connection.prepareStatement("UPDATE alumno SET nombre = ?, apellido = ?, fecha_nac = ?, legajo=?, estado=? WHERE id_alumno = ?", Statement.RETURN_GENERATED_KEYS);
             ps.setString(1, alumno.getNombre());
             ps.setString(2, alumno.getApellido());
             ps.setDate(3, Date.valueOf(alumno.getFecha_nac()));
-            ps.setInt(4, alumno.getId_alumno());
+            ps.setInt(4, alumno.getLegajo());
+            ps.setBoolean(5, alumno.isEstado());
+            ps.setInt(6, alumno.getId_alumno());
             if (ps.executeUpdate() == 1) {
                 mensaje("Alumno con id_alumno: " + alumno.getId_alumno() + " actualizado correctamente.");
             } else {

@@ -10,62 +10,56 @@ package Modelo;
  * @author Grupo2
  */
 public class Cursada {
-    private int id_cursada=-1;
-    private int id_alumno;
-    private int id_materia;
-    private int nota;
+    private int id=-1;
+    private Alumno alumno;
+    private Materia materia;
+    private double nota;
     
-    public Cursada(int id_alumno, int id_materia, int nota) {
-        this.id_alumno = id_alumno;
-        this.id_materia = id_materia;
+    public Cursada(Alumno alumno, Materia materia, double nota) {
+        this.alumno = alumno;
+        this.materia = materia;
         this.nota = nota;
     }
         
-    public Cursada(int id_cursada, int id_alumno, int id_materia, int nota) {
-        this.id_cursada = id_cursada;
-        this.id_alumno = id_alumno;
-        this.id_materia = id_materia;
+    public Cursada(int id, Alumno alumno, Materia materia, double nota) {
+        this.id = id;
+        this.alumno = alumno;
+        this.materia = materia;
         this.nota = nota;
     }
 
-    public Cursada(){
+    public Cursada(){}
+    
+    public int getId() {
+        return id;
     }
 
-    public int getId_cursada() {
-        return id_cursada;
+    public void setId(int id) {
+        this.id = id;
     }
 
-    public int getId_alumno() {
-        return id_alumno;
+    public Alumno getAlumno() {
+        return alumno;
     }
 
-    public int getId_materia() {
-        return id_materia;
+    public void setAlumno(Alumno alumno) {
+        this.alumno = alumno;
     }
 
-    public int getNota() {
+    public Materia getMateria() {
+        return materia;
+    }
+
+    public void setMateria(Materia materia) {
+        this.materia = materia;
+    }
+
+    public double getNota() {
         return nota;
-    }
-
-    public void setId_cursada(int id_cursada) {
-        this.id_cursada = id_cursada;
-    }
-
-    public void setId_alumno(int id_alumno) {
-        this.id_alumno = id_alumno;
-    }
-
-    public void setId_materia(int id_materia) {
-        this.id_materia = id_materia;
     }
 
     public void setNota(int nota) {
         this.nota = nota;
-    }
-
-    @Override
-    public String toString() {
-        return "Cursada: " + "id_alumno= " + id_alumno + ", id_materia= " + id_materia + ", nota= " + nota;
     }
     
     

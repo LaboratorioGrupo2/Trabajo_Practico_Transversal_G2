@@ -41,7 +41,7 @@ public class Alumno {
     
     @Override
     public String toString(){
-        return id_alumno+" - "+nombre + " - " + estado;
+        return id_alumno+" - "+nombre + " - " +apellido +" - "+ estado;
     }
     
     public int getId_alumno() {
