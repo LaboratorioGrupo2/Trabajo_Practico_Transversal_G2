@@ -112,21 +112,6 @@ public class MateriaData {
         }
     }
 
-    public void borrarMateriaLogico(int id_materia) {
-        try {
-            PreparedStatement ps = connection.prepareStatement("UPDATE materia SET estado = false WHERE id_materia = ?", Statement.RETURN_GENERATED_KEYS);
-            ps.setInt(1, id_materia);
-            if(ps.executeUpdate()==1){
-                mensaje("Materia dada de baja");
-            } else {
-                mensaje("La materia no se encuentra en la base de datos.");
-            }
-            ps.close();
-        } catch (SQLException ex) {
-            mensaje("Error al dar de baja la materia con id_materia: " + id_materia + ". Error: " + ex.getMessage());
-        }
-    }
-
     public void actualizarMateria(Materia materia) {
         try {
             PreparedStatement ps = connection.prepareStatement("UPDATE materia SET nombre_materia = ?, año = ?, estado=? WHERE id_materia = ?", Statement.RETURN_GENERATED_KEYS);
@@ -144,4 +129,20 @@ public class MateriaData {
             mensaje("Error al actualizar la materia con id_materia: " + materia.getId_materia() + ". Error: " + ex.getMessage());
         }
     }
+    public void borrarMateriaLogico(int id_materia) {
+        try {
+            PreparedStatement ps = connection.prepareStatement("UPDATE materia SET estado = false WHERE id_materia = ?", Statement.RETURN_GENERATED_KEYS);
+            ps.setInt(1, id_materia);
+            if(ps.executeUpdate()==1){
+                mensaje("Materia dada de baja");
+            } else {
+                mensaje("La materia no se encuentra en la base de datos.");
+            }
+            ps.close();
+        } catch (SQLException ex) {
+            mensaje("Error al dar de baja la materia con id_materia: " + id_materia + ". Error: " + ex.getMessage());
+        }
+    }
+
+    
 }

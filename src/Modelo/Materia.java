@@ -36,14 +36,14 @@ private int año;
         return id_materia+" - "+nombre_materia+" - "+año;
     }
 
-    public int getId_materia() {
-        return id_materia;
-    }
-
     public String getNombre_Materia() {
         return nombre_materia;
     }
     
+    public int getId_materia() {
+        return id_materia;
+    }
+
     public int getAño() {
         return año;
     }
