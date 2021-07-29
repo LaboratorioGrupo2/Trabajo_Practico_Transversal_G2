@@ -36,6 +36,10 @@ public class MateriaData {
     }
 
     public void guardarMateria(Materia materia) {
+        List<Materia> lista = new ArrayList<>();
+        lista = obtenerMaterias();
+        if(lista.isEmpty()){
+      
         try {
             PreparedStatement ps = connection.prepareStatement("INSERT INTO materia VALUES (NULL, ?, ?, ?)", Statement.RETURN_GENERATED_KEYS);
             ps.setString(1, materia.getNombre_Materia());
@@ -45,13 +49,39 @@ public class MateriaData {
             ResultSet rs = ps.getGeneratedKeys();
             if (rs.next()) {
                 materia.setId_Materia(rs.getInt(1));
-                mensaje("Se ha guardado la materia " + materia.getNombre_Materia() + " correctamente");
+                mensaje("Se ha guardado la primer materia " + materia.getNombre_Materia() + " correctamente");
             } else {
                 mensaje("No se ha guardado la materia " + materia.getNombre_Materia() + " correctamente");
             }
         } catch (SQLException ex) {
             mensaje("Error al guardar la materia: " + ex.getMessage());
         }
+        }else{
+            for(Materia mat: lista){
+            if (!(materia.getId_materia()==mat.getId_materia()&&materia.getAño()==mat.getAño())){
+                mensaje("No se puede guardar la materia, ya exciste con el ID "+mat.getId_materia());
+                break;
+            }else{
+               try {
+            PreparedStatement ps = connection.prepareStatement("INSERT INTO materia VALUES (NULL, ?, ?, ?)", Statement.RETURN_GENERATED_KEYS);
+            ps.setString(1, materia.getNombre_Materia());
+            ps.setInt(2, materia.getAño());
+            ps.setBoolean(3, materia.isEstado());
+            ps.executeUpdate();
+            ResultSet rs = ps.getGeneratedKeys();
+            if (rs.next()) {
+                materia.setId_Materia(rs.getInt(1));
+                mensaje("Se ha guardado la materia " + materia.getNombre_Materia() + " correctamente");
+                break;
+            } else {
+                mensaje("No se ha guardado la materia " + materia.getNombre_Materia() + " correctamente");
+            }
+        } catch (SQLException ex) {
+            mensaje("Error al guardar la materia: " + ex.getMessage());
+        } 
+            }
+        }
+       }
     }
 
     public List<Materia> obtenerMaterias() {
@@ -81,6 +111,7 @@ public class MateriaData {
     public Materia buscarMateria(int id_materia) {
         Materia m = new Materia();
         try {
+            
             PreparedStatement ps = connection.prepareStatement("SELECT * FROM materia WHERE id_materia=?", Statement.RETURN_GENERATED_KEYS);
             ps.setInt(1, id_materia);
             ResultSet rs = ps.executeQuery();
@@ -91,9 +122,10 @@ public class MateriaData {
                 m.setEstado(rs.getBoolean("estado"));
             }
             ps.close();
-        } catch (SQLException ex) {
+            
+            }catch (SQLException ex){
             mensaje("Error al buscar la materia con id_materia: " + m.getId_materia() + ". Error: " + ex.getMessage());
-        }
+        } 
         return m;
     }
 

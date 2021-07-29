@@ -193,7 +193,8 @@ public class VistaMateria extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void bGuardarMateriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bGuardarMateriaActionPerformed
-       String nombre;
+       
+           String nombre;
         int año;
         boolean activa;
         
@@ -206,7 +207,7 @@ public class VistaMateria extends javax.swing.JInternalFrame {
         materiaData.guardarMateria(m);
        
         tIdMateria.setText(m.getId_materia() + "");                                                                         
-    
+       
     }//GEN-LAST:event_bGuardarMateriaActionPerformed
 
     private void bBorrarMateriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bBorrarMateriaActionPerformed
@@ -245,7 +246,7 @@ public class VistaMateria extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_bLimpiarMateriaActionPerformed
 
     private void bBuscarMateriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bBuscarMateriaActionPerformed
-        
+        try{
         String nombre;
         int año;
         boolean estado;
@@ -260,7 +261,9 @@ public class VistaMateria extends javax.swing.JInternalFrame {
         tNombreMateria.setText(nombre);
         tAño.setText(String.valueOf(año));
         jCActiva.setSelected(estado);
-        
+        }catch (NumberFormatException ex2){
+            JOptionPane.showMessageDialog(this,"Error al buscar, falta el campo ID");
+        }  
     }//GEN-LAST:event_bBuscarMateriaActionPerformed
 
 

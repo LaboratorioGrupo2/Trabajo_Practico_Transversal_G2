@@ -19,11 +19,11 @@ public class Conexion {
     private String password="";
     private Connection con;
     
-    public Conexion() throws ClassNotFoundException{
+    private Conexion() throws ClassNotFoundException{
             Class.forName("org.mariadb.jdbc.Driver");
     }
     
-    public Conexion(String url, String usuario, String password) throws ClassNotFoundException {
+    private Conexion(String url, String usuario, String password) throws ClassNotFoundException {
         this.url = url;
         this.usuario = usuario;
         this.password = password;
